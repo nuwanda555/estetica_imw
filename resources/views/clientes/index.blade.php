@@ -53,6 +53,7 @@
                         <td>{{$cliente->ciudad}}</td>
                         <td><a href="{{url('/clientes')}}/{{$cliente->id}}"><img width="32px" src="https://www.pngrepo.com/png/190063/512/trash.png"></a></td>
                  {{--   <td><a href="{{route("borrar_cliente",["cliente" => $cliente->id])}}"><img width="32px" src="https://www.pngrepo.com/png/190063/512/trash.png"></a></td>  --}}
+                        <td><a href="{{url('/clientes')}}/{{$cliente->id}}/edit"><img width="32px" src="https://img.icons8.com/cotton/2x/000000/edit.png"></a></td>
 
                     </tr>
                 @endforeach

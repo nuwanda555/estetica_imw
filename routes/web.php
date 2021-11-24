@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProveedorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +26,9 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
-//Route::resource('/clientes', ClienteController::class);
+Route::resource('/clientes', ClienteController::class);
+Route::resource('/proveedores', ProveedorController::class);
+/*
 
 Route::get('/clientes/create', [ClienteController::class, 'create'])->name(
     'crear_cliente'
@@ -41,3 +44,11 @@ Route::get('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name(
 Route::post('/clientes', [ClienteController::class, 'store'])->name(
     'guardar_cliente'
 );
+
+Route::get('/clientes/{cliente}/edit', [
+    ClienteController::class,
+    'edit',
+])->name('editar_cliente');
+
+
+*/

@@ -7,7 +7,7 @@
 
 
 
-    <form action="{{route('guardar_cliente')}}" method="post">
+    <form action="{{route('clientes.store')}}" method="post">
         @csrf
         <div class="form-group">
             <label for="codigo">Código</label>
@@ -35,6 +35,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{{url('/clientes')}}" class="btn btn-secondary">Volver</a>
     </form>
 
 

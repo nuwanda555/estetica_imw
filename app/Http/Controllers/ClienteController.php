@@ -24,7 +24,7 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'codigo' => 'required|numeric|unique:clientes|min:99|max:999999',
+            'codigo' => 'required|min:3|max:15',
             'empresa' => 'required|min:10|max:50',
             'contacto' => 'required',
         ]);
@@ -42,7 +42,7 @@ class ClienteController extends Controller
         $cliente->save();
         */
 
-        return redirect()->route('listado_clientes');
+        return redirect()->route('clientes.index');
     }
 
     public function show($id)
@@ -52,18 +52,28 @@ class ClienteController extends Controller
 
     public function edit($id)
     {
-        //
+        $cliente = Cliente::find($id);
+        return view('clientes.edit', compact('cliente'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'codigo' => 'required|min:3|max:15',
+            'empresa' => 'required|min:10|max:50',
+            'contacto' => 'required',
+        ]);
+
+        $cliente = Cliente::find($id);
+        $cliente->update($request->all());
+
+        return redirect()->route('clientes.index');
     }
 
     public function destroy($id)
     {
         Cliente::find($id)->delete();
         // return redirect('/clientes'); //estas dos instrucciones hacen lo mismo
-        return redirect()->route('listado_clientes');
+        return redirect()->route('clientes.index');
     }
 }

@@ -2,7 +2,8 @@
 
 
 @section("contenido")
-    <h3>Insertar cliente</h3>
+    <h3>Insertar cliente </h3>
+
 
 
 

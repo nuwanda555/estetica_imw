@@ -16,7 +16,25 @@
 
 <script>
     $(document).ready(function() {
-        $('#tabla_clientes').DataTable();
+       // $('#tabla_clientes').DataTable();
+
+        $(".btn_borrar").click(function(){
+            const id=$(this).closest("tr").data("id");
+            $.ajax({
+                url: "{{url('clientes')}}/"+id,
+                method: "POST",
+                data: {
+                    "_method" : "DELETE",
+                    "_token" : "{{csrf_token()}}"
+                },
+                success: function(response){
+                    $("tr[data-id='"+id+"']").fadeOut();
+                }
+            });
+        })
+
+
+
     } );
 </script>
 
@@ -44,15 +62,23 @@
             </thead>
             <tbody>
                 @foreach($clientes as $cliente)
-                    <tr>
+                    <tr data-id='{{$cliente->id}}'>
                         <td>{{$cliente->codigo}}</td>
                         <td>{{$cliente->empresa}}</td>
                         <td>{{$cliente->telefono}}</td>
                         <td>{{$cliente->contacto}}</td>
                         <td>{{$cliente->direccion}}</td>
                         <td>{{$cliente->ciudad}}</td>
-                        <td><a href="{{url('/clientes')}}/{{$cliente->id}}"><img width="32px" src="https://www.pngrepo.com/png/190063/512/trash.png"></a></td>
-                 {{--   <td><a href="{{route("borrar_cliente",["cliente" => $cliente->id])}}"><img width="32px" src="https://www.pngrepo.com/png/190063/512/trash.png"></a></td>  --}}
+         {{--              <td><a class="btn_borrar" href="#"><img width="32px" src="https://www.pngrepo.com/png/190063/512/trash.png"></a></td>
+--}}
+                        <td><form method="POST" action="{{url('/clientes')}}/{{$cliente->id}}">
+                                @csrf
+                                @method("delete")
+                                <input  type="image" width="32px" src="https://www.pngrepo.com/png/190063/512/trash.png">
+                        </form>
+
+
+
                         <td><a href="{{url('/clientes')}}/{{$cliente->id}}/edit"><img width="32px" src="https://img.icons8.com/cotton/2x/000000/edit.png"></a></td>
 
                     </tr>

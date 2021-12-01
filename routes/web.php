@@ -1,5 +1,7 @@
 <?php
 
+// mysql -h localhost -u root estetica < estetica.sql
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProveedorController;
